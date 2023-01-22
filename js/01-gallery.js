@@ -3,8 +3,8 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-const galleryEl = document.querySelector('.gallery');
-const itemEl = [];
+const gallery = document.querySelector('.gallery');
+const items = [];
 
 galleryItems.forEach((element) => {
   const galleryItem = document.createElement('div');
@@ -20,12 +20,12 @@ galleryItems.forEach((element) => {
 
   galleryItem.append(galleryLink);
   galleryLink.append(galleryImage);
-  itemEl.push(galleryItem);
+  items.push(galleryItem);
 });
 
-galleryEl.append(...itemEl);
+gallery.append(...items);
 
-galleryEl.addEventListener('click', (el) => {
+gallery.addEventListener('click', (el) => {
   el.preventDefault();
   if (el.target.nodeName !== 'IMG') {
     return;
@@ -34,12 +34,12 @@ galleryEl.addEventListener('click', (el) => {
   const onSelectImg = el.target.getAttribute('data-source');
 
   const elementEl = basicLightbox.create(
-    `<img src="${onSelectImg}" width="800" height="600"`
+    `<img src="${onSelectImg}" width="800" height="600">`
   );
 
   elementEl.show();
 
-  galleryEl.addEventListener('keydown', (el) => {
+  gallery.addEventListener('keydown', (el) => {
     if (el.key === 'Escape') {
       elementEl.close();
     }
